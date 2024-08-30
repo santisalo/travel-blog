@@ -31,3 +31,44 @@ body {
     text-wrap: balance;
   }
 }
+
+@view-transition {
+  navigation: auto;
+}
+/* Create a custom animation */
+@keyframes move-out {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(66vw);
+  }
+}
+
+@keyframes move-in {
+  from {
+    transform: translateX(-66vw);
+  }
+
+  to {
+    transform: translateX(0%);
+  }
+}
+
+/* Apply the custom animation to the old and new page states */
+::view-transition-old(the-train) {
+  animation: 0.4s ease-in both move-out;
+}
+
+::view-transition-new(the-train) {
+  animation: 0.4s ease-out both move-in;
+}
+
+@media (prefers-color-scheme: dark) {
+  .leaflet-layer,
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out,
+.leaflet-control-attribution {
+  filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+}
+}
